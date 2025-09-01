@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PokeAPI Vue Challenge - Descobrir Pokémons aleatórios por tipo"
+    />
+    <meta name="author" content="Goparity Frontend Challenge" />
+    <meta
+      name="keywords"
+      content="Pokemon, Vue.js, API, Frontend, Challenge, Types, Filter"
+    />
+
+    <meta property="og:title" content="PokeAPI Vue Challenge" />
+    <meta
+      property="og:description"
+      content="Discover random Pokémon with Vue.js - Filter by type!"
+    />
+    <meta property="og:type" content="website" />
+
+    <title>PokeAPI Vue Challenge - Goparity</title>
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+      type="image/png"
+    />
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              pokemon: {
+                primary: "#667eea",
+                secondary: "#764ba2",
+                accent: "#f093fb",
+              },
+            },
+            animation: {
+              "bounce-slow": "bounce 2s infinite",
+              "pulse-slow": "pulse 3s infinite",
+              "spin-slow": "spin 2s linear infinite",
+            },
+            backdropBlur: {
+              xs: "2px",
+            },
+            boxShadow: {
+              pokemon: "0 20px 40px rgba(102, 126, 234, 0.3)",
+              "pokemon-hover": "0 25px 50px rgba(102, 126, 234, 0.4)",
+            },
+          },
+        },
+        plugins: [],
+      };
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="./assets/styles.css" />
+    <link rel="preconnect" href="https://pokeapi.co" />
+    <link rel="preconnect" href="https://raw.githubusercontent.com" />
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen font-sans antialiased"
+  >
+    <div id="app" role="main" class="min-h-screen">
+      <div
+        id="initial-loader"
+        class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"
+      >
+        <div class="text-center p-8">
+          <div class="loading-spinner w-12 h-12 mx-auto mb-6"></div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">
+            PokeAPI Challenge
+          </h2>
+          <p class="text-gray-600 text-lg">Initializing Pokemon Explorer...</p>
+          <div class="mt-4 flex justify-center space-x-2">
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+            <div
+              class="w-2 h-2 bg-purple-400 rounded-full animate-bounce"
+              style="animation-delay: 0.1s"
+            ></div>
+            <div
+              class="w-2 h-2 bg-pink-400 rounded-full animate-bounce"
+              style="animation-delay: 0.2s"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          const loader = document.getElementById("initial-loader");
+          if (loader) {
+            loader.style.display = "none";
+          }
+        }, 1000);
+      });
+    </script>
+
+    <script type="module">
+      import("./utils/constants.js")
+        .then(() => import("./services/pokemonApi.js"))
+        .then(() => import("./components/LoadingSpinner.js"))
+        .then(() => import("./components/ErrorMessage.js"))
+        .then(() => import("./components/PokemonCard.js"))
+        .then(() => import("./components/TypeFilter.js"))
+        .then(() => import("./app.js"))
+        .catch((error) => {
+          console.error("Failed to load application modules:", error);
+
+          document.getElementById("app").innerHTML = `
+          <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded max-w-md">
+              <div class="flex items-center">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <h3 class="font-semibold">Application Failed to Load</h3>
+                  <p class="text-sm mt-1">Please check your internet connection and try refreshing the page.</p>
+                  <p class="text-sm mt-1">Error: ${error.message}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        });
+    </script>
+  </body>
+</html>

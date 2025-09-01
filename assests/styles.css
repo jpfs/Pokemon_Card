@@ -1,0 +1,248 @@
+.pokemon-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  backdrop-filter: blur(10px);
+
+  width: 384px !important;
+  min-height: auto;
+}
+
+.type-fire {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.type-water {
+  background: linear-gradient(135deg, #3742fa, #2f3542);
+}
+
+.type-grass {
+  background: linear-gradient(135deg, #26de81, #20bf6b);
+}
+
+.type-electric {
+  background: linear-gradient(135deg, #fed330, #f39801);
+}
+
+.loading-spinner {
+  border: 3px solid #f3f4f6;
+  border-top: 3px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-up-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-up-enter-from {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.pokemon-button {
+  background: linear-gradient(to right, #667eea, #764ba2);
+  color: white;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.pokemon-button:hover {
+  box-shadow: 0 25px 50px rgba(102, 126, 234, 0.4);
+  transform: translateY(-4px) scale(1.05);
+}
+
+.pokemon-button:active {
+  transform: translateY(0) scale(1);
+}
+
+.pokemon-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pokemon-button:disabled:hover {
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  transform: none;
+}
+
+.hp-bar {
+  transition: width 1s ease-out;
+}
+
+.type-filter-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.type-filter-button:hover:not(:disabled):not(.active) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.type-filter-button.active {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  position: relative;
+  background: #1f2937 !important;
+  color: white !important;
+  border-color: #374151 !important;
+}
+
+.type-filter-button.active::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: #1f2937;
+  border-radius: inherit;
+  filter: blur(6px);
+  opacity: 0.6;
+  z-index: -1;
+  animation: active-glow 2s ease-in-out infinite alternate;
+}
+
+.type-filter-button.active:hover:not(:disabled) {
+  transform: scale(1.15) translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  background: #111827 !important;
+}
+
+@keyframes active-glow {
+  0% {
+    opacity: 0.4;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0.7;
+    filter: blur(8px);
+  }
+}
+
+.type-filter-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+@keyframes active-glow {
+  0% {
+    opacity: 0.4;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0.7;
+    filter: blur(8px);
+  }
+}
+
+.type-filter-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.type-filter-button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+@media (max-width: 768px) {
+  .type-filter-button {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pokemon-card {
+    margin: 0 1rem;
+    width: 350px !important;
+  }
+
+  .type-filter-button {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-card {
+    width: 320px !important;
+  }
+
+  .type-filter-button {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .pokemon-card {
+    width: 280px !important;
+    margin: 0 0.5rem;
+  }
+
+  .type-filter-button {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-filter-button,
+  .pokemon-button,
+  .hp-bar,
+  .fade-enter-active,
+  .fade-leave-active,
+  .slide-up-enter-active {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .type-filter-button:hover,
+  .pokemon-button:hover {
+    transform: none !important;
+  }
+
+  .type-filter-button.active::before {
+    display: none !important;
+  }
+
+  .type-filter-button.active {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+  }
+}
