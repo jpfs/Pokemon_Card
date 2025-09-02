@@ -36,7 +36,7 @@ export const TypeFilter = {
   },
 
   methods: {
-    /** Seleciona um tipo de Pokémon ou remove o filtro
+    /** Seleciona um type de Pokémon ou remove o filtro
      * @param {string|null} type
      */
     selectType(type) {
@@ -46,7 +46,7 @@ export const TypeFilter = {
       this.$emit("type-selected", newType);
     },
 
-    /** Obter as classes Tailwind para o estilo do tipo de Pokémon
+    /** Obter as classes Tailwind para o estilo do type de Pokémon
      * @param {string} type
      * @returns {Object}
      */
@@ -59,7 +59,7 @@ export const TypeFilter = {
       );
     },
 
-    /** Verifica se um tipo está selecionado
+    /** Verifica se um type está selecionado
      * @param {string} type
      * @returns {boolean}
      */
@@ -67,7 +67,7 @@ export const TypeFilter = {
       return this.selectedType === type;
     },
 
-    /** Obtém as classes CSS para um botão de tipo
+    /** Obtém as classes CSS para um botão de type
      * @param {string} type
      * @returns {Array}
      */
@@ -156,7 +156,7 @@ export const TypeFilter = {
      */
     filterStatusMessage() {
       if (!this.selectedType) return null;
-      return `Mostrando apenas Pokémon do tipo ${this.selectedType}`;
+      return `Showing only Pokémon of type ${this.selectedType}`;
     },
 
     /** Verifica se algum filtro está ativo
@@ -170,7 +170,7 @@ export const TypeFilter = {
   template: `
     <div class="mb-6">
       <h3 class="text-lg font-semibold text-gray-700 mb-3 text-center">
-        Filtrar por Tipo
+        Filter by Type
       </h3>
       
       <div class="flex flex-wrap justify-center gap-2 mb-3">
@@ -179,9 +179,9 @@ export const TypeFilter = {
           :class="getAllTypesButtonClasses()"
           :disabled="isLoading"
           :aria-pressed="!selectedType"
-          aria-label="Mostrar todos os tipos de Pokémon"
+          aria-label="Show all Pokémon types"
         >
-          Todos
+          All
         </button>
         
         <button
@@ -191,8 +191,7 @@ export const TypeFilter = {
           :class="getTypeButtonClasses(type)"
           :disabled="isLoading"
           :aria-pressed="isTypeSelected(type)"
-          :aria-label="'Filtrar por tipo ' + type"
-          :title="'Filtrar por tipo ' + type"
+          :title="'Filter by ' + type + ' type'"
         >
           {{ type }}
         </button>

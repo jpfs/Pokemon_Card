@@ -233,9 +233,9 @@ const PokemonApp = {
 
       <footer class="text-center mt-4 text-gray-500 flex-shrink-0">
         <p class="text-sm mb-1">
-          Feito por 
+          Made by 
           <strong class="text-gray-700">João Santos</strong>
-          para o 
+          for the 
           <strong class="text-blue-600">GoParity</strong> 
           Frontend Challenge
         </p>

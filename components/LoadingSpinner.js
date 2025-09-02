@@ -4,7 +4,7 @@ export const LoadingSpinner = {
   props: {
     message: {
       type: String,
-      default: "A carregar novos Pokémons...",
+      default: "Loading new Pokémons...",
     },
     size: {
       type: String,
